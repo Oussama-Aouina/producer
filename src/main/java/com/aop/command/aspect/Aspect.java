@@ -29,4 +29,14 @@ public class Aspect {
     public void afterthrow(JoinPoint joinPoint){
         log.info("transction echoued::"+joinPoint.getTarget());
     }
+
+    @Pointcut("execution(* com.aop.command.service.KafkaService.*(..))")
+    public void kafkaLoggingPointCut(){
+    }
+
+    @Before("kafkaLoggingPointCut()")
+    public void beforeSendingMsg(JoinPoint joinPoint){
+        log.info("sending msg to the stock topic::"+joinPoint.getTarget());
+    }
 }
+
