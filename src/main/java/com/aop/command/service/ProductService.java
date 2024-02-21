@@ -15,8 +15,12 @@ public class ProductService {
     private ProductRepo productRepo ;
     @Autowired
     private KafkaService kafkaService;
+    @Autowired
+    private KafkaJsonService kafkaJsonService;
+
     public void addProduct(Product product) {
         productRepo.save(product);
-        kafkaService.sendMessage("product added:"+product.getId());
+        //kafkaService.sendMessage("product added:"+product.getId());
+        kafkaJsonService.sendProduct(product);
     }
 }
