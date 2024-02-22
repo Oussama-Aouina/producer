@@ -17,7 +17,7 @@ public class KafkaJsonService {
 
     public void sendProduct(Product product){
         Message<Product> message= MessageBuilder.withPayload(product)
-                .setHeader(KafkaHeaders.TOPIC,"stock")
+                .setHeader(KafkaHeaders.TOPIC,"stock2")
                 .build();
         kafkaTemplate.send(message);
     }

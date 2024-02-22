@@ -13,8 +13,7 @@ import java.util.List;
 public class ProductService {
     @Autowired
     private ProductRepo productRepo ;
-    @Autowired
-    private KafkaService kafkaService;
+
     @Autowired
     private KafkaJsonService kafkaJsonService;
 
