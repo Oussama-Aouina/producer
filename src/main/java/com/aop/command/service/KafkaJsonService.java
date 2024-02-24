@@ -1,6 +1,8 @@
 package com.aop.command.service;
 
 import com.aop.command.model.Product;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -16,10 +18,24 @@ public class KafkaJsonService {
     private final KafkaTemplate<String, Product> kafkaTemplate;
 
     public void sendProduct(Product product){
-        Message<Product> message= MessageBuilder.withPayload(product)
-                .setHeader(KafkaHeaders.TOPIC,"stock2")
+
+        //this object mapper is used to Serialize the json object "Product" to be sent in a String
+        ObjectMapper mapper = new ObjectMapper();
+        String reqJson = null;
+        try {
+            reqJson = mapper.writeValueAsString(product);
+        } catch (JsonProcessingException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+
+        }
+        // this is the kafka message
+        Message<String> message= MessageBuilder.withPayload(reqJson)
+                .setHeader(KafkaHeaders.TOPIC,"stock")
                 .build();
+
         kafkaTemplate.send(message);
+
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
 public class KafkaTopicConfig {
+    // this bean is used to create the kafka topic
     @Bean
     public NewTopic stockTopic(){
         return TopicBuilder.
