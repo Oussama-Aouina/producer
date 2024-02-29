@@ -47,6 +47,5 @@ public void addProduct(Product product) {
         productRepo.delete(old);
         KafkaEvent deleteEvent = new KafkaEvent(EventTypes.deleteProduct,old);
         kafkaJsonService.sendMessage(deleteEvent);
-
     }
 }

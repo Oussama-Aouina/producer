@@ -1,5 +1,6 @@
 package com.aop.command.service;
 
+import com.aop.command.dto.KafkaEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.protocol.types.Field;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class KafkaService {
-    private final KafkaTemplate<String,String> kafkaTemplate;
-    public void sendMessage(String msg){
-        kafkaTemplate.send("stock",msg);
+    private final KafkaTemplate<String,Object> kafkaTemplate;
+    public void sendMessage(KafkaEvent kafkaEvent){
+        kafkaTemplate.send("stock2",kafkaEvent);
     }
 }
