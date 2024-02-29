@@ -30,7 +30,7 @@ public class Aspect {
         log.info("transction echoued::"+joinPoint.getTarget());
     }
 
-    @Pointcut("execution(* com.aop.command.service.KafkaService.*(..))")
+    @Pointcut("execution(* com.aop.command.service.KafkaJsonService.*(..))")
     public void kafkaLoggingPointCut(){
     }
 

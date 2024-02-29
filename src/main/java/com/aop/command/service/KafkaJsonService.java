@@ -1,7 +1,6 @@
 package com.aop.command.service;
 
 import com.aop.command.dto.KafkaEvent;
-import com.aop.command.model.Product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
